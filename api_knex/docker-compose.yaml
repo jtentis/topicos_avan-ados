@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: root
+      POSTGRES_DB: apiknex
+    ports:
+      - "15432:5432"
+
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "jps.tentis@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "pass"
+    ports:
+      - "15433:80"
+    depends_on:
+      - db
+    networks:
+      - postgres-compose-network
+      
+  app:
+    image: apiknex
+    ports: 
+      - "3000:3000"
+
+networks: 
+  postgres-compose-network:
+    driver: bridge

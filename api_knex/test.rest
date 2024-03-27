@@ -1,0 +1,15 @@
+###
+GET http://localhost:3000
+
+###
+
+POST http://localhost:3000/Alunos
+Content-Type: application/json
+
+{
+    "nome": "teste",
+    "curso": "TI"
+}
+
+###
+GET http://localhost:3000/setup

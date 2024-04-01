@@ -1,20 +1,25 @@
 {
-  "name": "api_knex",
+  "name": "knex",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node src/server.js"
+    "dev": "ts-node-dev  src/server.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2",
-    "knex": "^3.1.0",
+    "express": "^4.19.1",
+    "objection": "^3.1.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/knex": "^0.16.1",
     "pg": "^8.11.3",
-    "uuid": "^9.0.1"
+    "ts-node-dev": "^2.0.0",
+    "@types/uuid": "^9.0.1",
+    "typescript": "^5.4.2"
   }
 }

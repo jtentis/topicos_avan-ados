@@ -1,15 +1,17 @@
 ###
-GET http://localhost:3000
-
+## CRIAR TABELA ALUNO
+GET http://localhost:3000/tabelaAluno
 ###
 
-POST http://localhost:3000/Alunos
+## Criar alunos
+POST http://localhost:3000/CriarAluno
 Content-Type: application/json
 
 {
-    "nome": "teste",
+    "nome": "joao",
     "curso": "TI"
 }
-
 ###
-GET http://localhost:3000/setup
+
+## Listar alunos
+GET http://localhost:3000/ListarAluno

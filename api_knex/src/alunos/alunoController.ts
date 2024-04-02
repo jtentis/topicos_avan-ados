@@ -12,19 +12,20 @@ export async function CriarAluno(request: Request, response: Response) {
     response.status(201).send("Aluno cadastrado com sucesso!");
 }
 
-export async function ListarAlunosSemCursos(request: Request, response: Response) {
+export async function ListarAlunos(request: Request, response: Response) {
     const alunos = await alunoService.listarSemCursos();
-    response.json(alunos);
+    response.status(201).json(alunos);
 }
 
 export async function VisualizarAluno(request: Request, response: Response) {
     const id = String(request.params.id);
     const aluno = await alunoService.listaUmAlunoPorId(id);
-    if (aluno) {
-        response.json(aluno);
-    } else {
-        response.status(404).send("Aluno não encontrado");
-    }
+    id ? response.json({message: "Aluno encontrado!", aluno}) : response.status(404).send("Aluno não encontrado");
+    // if (id) {
+    //     response.json({message: "Aluno encontrado!", aluno});
+    // } else {
+    //     response.status(404).send("Aluno não encontrado");
+    // }
 }
 
 export async function EditarAluno(request: Request, response: Response) {

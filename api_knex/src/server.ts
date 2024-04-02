@@ -2,12 +2,13 @@ import express from "express";
 
 import {
     CriarAluno,
-    ListarAlunosSemCursos,
+    ListarAlunos,
     VisualizarAluno,
     EditarAluno,
     DeletarAluno,
     CriarTabelaAluno
 } from "./alunos/alunoController";
+
 import {
     CriarCurso,
     ListarCursos,
@@ -22,7 +23,7 @@ app.use(express.json());
 
 app.get('/tabelaAluno', CriarTabelaAluno)
 app.post('/CriarAluno', CriarAluno)
-app.get('/ListarAluno', ListarAlunosSemCursos)
+app.get('/ListarAluno', ListarAlunos)
 app.get('/VisualizarAluno/:id', VisualizarAluno)
 app.put('/EditarAluno/:id', EditarAluno)
 app.delete('/DeletarAluno/:id', DeletarAluno)

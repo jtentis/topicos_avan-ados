@@ -1,17 +1,35 @@
 ###
 ## CRIAR TABELA ALUNO
 GET http://localhost:3000/tabelaAluno
-###
 
+###
 ## Criar alunos
 POST http://localhost:3000/CriarAluno
 Content-Type: application/json
 
 {
-    "nome": "joao",
+    "nome": "jessica",
     "curso": "TI"
 }
-###
 
+###
 ## Listar alunos
 GET http://localhost:3000/ListarAluno
+
+###
+## LISTAR ALUNO PELO ID
+GET http://localhost:3000/VisualizarAluno/52670a40-864f-473da-8859-211656e7f369
+
+###
+## EDITAR ALUNO
+PUT http://localhost:3000/EditarAluno/808f1d78-386e-4b53-b1fb-caaf39c5a22a
+Content-Type: application/json
+
+{
+  "nome": "jessica",
+  "curso": "TI"
+}
+
+###
+## DELETAR ALUNO
+DELETE http://localhost:3000/DeletarAluno/808f1d78-386e-4b53-b1fb-caaf39c5a22a

@@ -1,8 +1,9 @@
 import express, { Router } from "express";
-import { listarAlunos } from "./controller";
+import {criarAluno, listarAlunos} from "./controller";
 
 const alunos: Router = express.Router();
 
 alunos.get("/aluno", listarAlunos);
+alunos.post("/aluno", criarAluno);
 
 export default alunos;

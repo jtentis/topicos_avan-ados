@@ -1,27 +1,31 @@
 version: "3.9"
-
 services:
-  postgres-compose:
+  db:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: root
+      POSTGRES_DB: apisequelize
     ports:
       - "15432:5432"
-    networks:
-      - postgres-compose-network
-      
+
   pgadmin-compose:
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: "diego.castro@cefet-rj.br"
-      PGADMIN_DEFAULT_PASSWORD: "postgres"
+      PGADMIN_DEFAULT_EMAIL: "jps.tentis@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "pass"
     ports:
-      - "16543:80"
+      - "15433:80"
     depends_on:
-      - postgres-compose
+      - db
     networks:
       - postgres-compose-network
 
-networks: 
+  app-sequelize:
+    image: apisequelize
+    ports:
+      - "4000:4000"
+
+networks:
   postgres-compose-network:
     driver: bridge

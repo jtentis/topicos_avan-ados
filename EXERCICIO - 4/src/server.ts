@@ -7,4 +7,4 @@ app.use(express.json());
 
 app.use("/v1", rotas);
 
-app.listen(3000);
+app.listen(4000, () => console.log(`Servidor na porta: ${4000}`))

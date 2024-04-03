@@ -34,7 +34,13 @@ import {
 
     @UpdatedAt
     declare updated_at: Date;
-   
+
+      static async criarAluno({nome, matricula}: Aluno)  {
+          await Aluno.create({
+              nome: nome,
+              matricula: matricula,
+          });
+      }
   }
   
   export default Aluno;

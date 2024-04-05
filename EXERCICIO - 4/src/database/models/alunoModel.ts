@@ -4,20 +4,22 @@ import {
     Model,
     DataType,
     CreatedAt,
-    UpdatedAt,
-  } from "sequelize-typescript";
+    UpdatedAt, DeletedAt,
+} from "sequelize-typescript";
+import {v4 as uuidv4} from "uuid";
+import {alunoInterface} from "../../interfaces/alunoInterface";
   
   @Table({
     timestamps: true,
     tableName: "aluno",
-    modelName: "Aluno",
+    modelName: "AlunoModel",
   })
-  class Aluno extends Model{
+  class AlunoModel extends Model{
     @Column({
       primaryKey: true,
-      type: DataType.BIGINT,
+      type: DataType.TEXT,
     })
-    declare id: number;
+    declare id: string;
   
     @Column({
       type: DataType.STRING,
@@ -35,12 +37,8 @@ import {
     @UpdatedAt
     declare updated_at: Date;
 
-      static async criarAluno({nome, matricula}: Aluno)  {
-          await Aluno.create({
-              nome: nome,
-              matricula: matricula,
-          });
-      }
+    @DeletedAt
+    declare deleted_at: Date;
   }
   
-  export default Aluno;
+  export default AlunoModel;

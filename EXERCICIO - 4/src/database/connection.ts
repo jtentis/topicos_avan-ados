@@ -12,7 +12,7 @@ const sequelize = new Sequelize({
 
 (async () => {
   try {
-    await sequelize.sync({ force: true }); // This will create the table if it doesn't exist
+    await sequelize.sync(); // This will create the table if it doesn't exist
     console.log('Tabela sincronizada');
     // Now you can use your models for CRUD operations
   } catch (error) {

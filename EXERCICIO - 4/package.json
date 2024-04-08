@@ -1,5 +1,5 @@
 {
-  "name": "api_knex",
+  "name": "api_sequelize",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

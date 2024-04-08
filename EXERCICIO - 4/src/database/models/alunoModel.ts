@@ -6,14 +6,13 @@ import {
     CreatedAt,
     UpdatedAt, DeletedAt,
 } from "sequelize-typescript";
-import {v4 as uuidv4} from "uuid";
-import {alunoInterface} from "../../interfaces/alunoInterface";
   
   @Table({
     timestamps: true,
     tableName: "aluno",
     modelName: "AlunoModel",
   })
+
   class AlunoModel extends Model{
     @Column({
       primaryKey: true,
@@ -22,14 +21,9 @@ import {alunoInterface} from "../../interfaces/alunoInterface";
     declare id: string;
   
     @Column({
-      type: DataType.STRING,
+      type: DataType.TEXT,
     })
     declare nome: string;
-
-    @Column({
-        type: DataType.STRING,
-      })
-      declare matricula: string;
 
     @CreatedAt
     declare created_at: Date;

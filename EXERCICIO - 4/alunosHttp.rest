@@ -1,0 +1,28 @@
+### Listar Tudo
+GET http://localhost:4000/listarAlunos
+
+### Listar Nomes
+GET http://localhost:4000/listarNomes
+
+
+### Criar
+POST http://localhost:4000/criarAluno
+Content-Type: application/json
+
+{
+  "nome": "joao",
+  "matricula": "777",
+  "curso": ["ti","arroz"]
+}
+
+### Atualizar
+PUT http://localhost:4000/editarAluno/b49295f8-72ed-4941-asd8725-c08582932524
+Content-Type: application/json
+
+{
+  "nome": "aaaaaaaa",
+  "curso": "biologia avançada"
+}
+
+### Deletar
+DELETE http://localhost:4000/deletarAluno/c66f2367-2e6f-4838-98e4-5994de9ca1fc

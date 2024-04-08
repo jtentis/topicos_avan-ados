@@ -1,0 +1,25 @@
+### Listar Tudo
+GET http://localhost:4000/listarCursos
+
+### Listar Nomes
+GET http://localhost:4000/listarNomesCursos
+
+
+### Criar
+POST http://localhost:4000/criarCurso
+Content-Type: application/json
+
+{
+  "nome": "topicos avancados"
+}
+
+### Atualizar
+PUT http://localhost:4000/editarCurso/8c17a5db-dbad-4f73-9829-0633e9eb5eff
+Content-Type: application/json
+
+{
+  "nome": "eletricidade basisca I"
+}
+
+### Deletar
+DELETE http://localhost:4000/deletarCurso/8c17a5db-dbad-4f73-9829-0633e9eb5eff

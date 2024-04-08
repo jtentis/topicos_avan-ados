@@ -1,6 +1,7 @@
 import {Request, Response, NextFunction} from "express";
 import AlunoRepository from "../repositories/alunoRepository";
 import alunoModel from "../database/models/alunoModel";
+import AlunoModel from "../database/models/alunoModel";
 
 export const criarAluno = async (
     req: Request,
@@ -43,7 +44,7 @@ export const editarAluno = async (
     const repository = new AlunoRepository();
     const {nome, curso} = req.body;
     const id = String(req.params.id);
-    const find = await alunoModel.findByPk(id);
+    const find = await AlunoModel.findByPk(id);
 
     try{
         if(find){

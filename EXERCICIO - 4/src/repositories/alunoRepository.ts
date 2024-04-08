@@ -1,13 +1,12 @@
 import AlunoModel from "../database/models/alunoModel";
 import {alunoInterface} from "../interfaces/alunoInterface";
 import {v4 as uuidv4} from "uuid";
-import alunoModel from "../database/models/alunoModel";
 import {Identifier} from "sequelize";
 
 export default class AlunoRepository {
 
     async findId(id:Identifier){
-        await alunoModel.findByPk(id);
+        await AlunoModel.findByPk(id);
     }
     async insert({nome, matricula, curso}: alunoInterface){
         await AlunoModel.create({

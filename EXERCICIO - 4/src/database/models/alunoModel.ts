@@ -25,6 +25,16 @@ import {
     })
     declare nome: string;
 
+    @Column({
+        type: DataType.STRING,
+      })
+      declare matricula: string;
+
+      @Column({
+          type: DataType.JSON,
+      })
+      declare curso: string;
+
     @CreatedAt
     declare created_at: Date;
 

@@ -21,7 +21,7 @@ import {
     declare id: string;
   
     @Column({
-      type: DataType.TEXT,
+      type: DataType.JSON,
     })
     declare nome: string;
 

@@ -1,4 +1,4 @@
-import CursoModel from "../database/models/alunoModel";
+import CursoModel from "../database/models/cursoModel";
 import {cursoInterface} from "../interfaces/cursoInterface";
 import {v4 as uuidv4} from "uuid";
 

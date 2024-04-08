@@ -1,6 +1,6 @@
 import {Request, Response, NextFunction} from "express";
-import CursoRepository from "../repositories/cursoRepository";
-import cursoModel from "../database/models/cursoModel";
+import CursoRepository from "../../repositories/cursoRepository";
+import cursoModel from "../../database/models/cursoModel";
 
 export const criarCurso = async (
     req: Request,
@@ -41,7 +41,7 @@ export const editarCurso = async (
     next: NextFunction
 ) => {
     const repository = new CursoRepository();
-    const nome = req.body;
+    const {nome} = req.body;
     const id = String(req.params.id);
     const find = await cursoModel.findByPk(id);
 

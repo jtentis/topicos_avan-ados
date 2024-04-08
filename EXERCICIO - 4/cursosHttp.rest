@@ -1,7 +1,7 @@
 ### Listar Tudo
 GET http://localhost:4000/listarCursos
 
-### Listar Nomes
+### Listar Cursos
 GET http://localhost:4000/listarNomesCursos
 
 
@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ### Atualizar
-PUT http://localhost:4000/editarCurso/8c17a5db-dbad-4f73-9829-0633e9eb5eff
+PUT http://localhost:4000/editarCurso/abae180c-a525-4223-8ec1-273f66fc3efc
 Content-Type: application/json
 
 {

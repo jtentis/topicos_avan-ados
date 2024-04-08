@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from "express";
-import AlunoRepository from "../repositories/alunoRepository";
-import alunoModel from "../database/models/alunoModel";
-import AlunoModel from "../database/models/alunoModel";
+import AlunoRepository from "../../repositories/alunoRepository";
+import alunoModel from "../../database/models/alunoModel";
+import AlunoModel from "../../database/models/alunoModel";
 
 export const criarAluno = async (
     req: Request,

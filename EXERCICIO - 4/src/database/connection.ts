@@ -10,7 +10,8 @@ const sequelize = new Sequelize({
   models: [__dirname + "/models"],
   timezone: '-03:00',
   dialectOptions: {
-    useUTC: false
+      useUTC: false,
+      dateFirst: 1
   }
 });
 

@@ -1,7 +1,5 @@
 import {Request, Response, NextFunction} from "express";
 import AlunoRepository from "../../repositories/alunoRepository";
-import alunoModel from "../../database/models/alunoModel";
-import AlunoModel from "../../database/models/alunoModel";
 
 export const criarAluno = async (
     req: Request,
@@ -32,12 +30,11 @@ export const listarAluno = async (
 ) => {
     const repository = new AlunoRepository();
     const id = String(req.params.id)
-    let aluno = await repository.selectOne(id);
     const find = await repository.find(id);
 
     try{
         if(find){
-            await repository.selectOne(id);
+            let aluno = await repository.selectOne(id);
             res.status(200).json({message:`Aluno do id ${id}:`, aluno});
         }else{
             res.status(404).json({message:"Id inválido!"});

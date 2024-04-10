@@ -23,7 +23,7 @@ export const listarCursos = async (
     res.status(200).json({message:"Lista dos cursos:", cursos});
 };
 
-export const listarCursosSemCurso = async (
+export const listarCurso = async (
     req: Request,
     res: Response,
     next: NextFunction

@@ -4,23 +4,31 @@ import {v4 as uuidv4} from "uuid";
 import {Identifier, TEXT} from "sequelize";
 import CursoModel from "../database/models/cursoModel";
 import aluno_cursoModel from "../database/models/aluno_cursoModel";
-import sequelize from "../database/connection";
+import cursoModel from "../database/models/cursoModel";
 
 export default class AlunoRepository {
 
     async find(id: Identifier) {
         return await AlunoModel.findByPk(id);
     }
+
     async insert({nome, matricula, curso}: alunoInterface) {
-        aluno_cursoModel.init({
-            id_aluno: TEXT
-        }, {sequelize});
-        AlunoModel.belongsToMany(CursoModel, {through: 'aluno_curso'})
-        await AlunoModel.create({
+        // AlunoModel.belongsToMany(CursoModel, {
+        //     as: 'cursos',
+        //     through: 'aluno_curso',
+        //     foreignKey: 'id',
+        // })
+        await AlunoModel.bulkCreate([{
             id: uuidv4(),
             nome: nome,
             matricula: matricula,
             curso: curso,
+        }],{
+            ignoreDuplicates: true,
+            include:[{
+                model: cursoModel,
+                as: 'cursos',
+            }]
         });
     }
 

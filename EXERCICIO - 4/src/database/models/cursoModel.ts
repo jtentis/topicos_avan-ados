@@ -1,11 +1,14 @@
 import {
-    Table,
-    Column,
-    Model,
-    DataType,
-    CreatedAt,
-    UpdatedAt, DeletedAt,
+  Table,
+  Column,
+  Model,
+  DataType,
+  CreatedAt,
+  UpdatedAt, DeletedAt, BelongsToMany, HasMany,
 } from "sequelize-typescript";
+import Aluno_cursoModel from "./aluno_cursoModel";
+import AlunoModel from "./alunoModel";
+import alunoModel from "./alunoModel";
   
   @Table({
     timestamps: true,
@@ -14,6 +17,10 @@ import {
   })
 
   class CursoModel extends Model{
+
+    @BelongsToMany(() => AlunoModel, () => Aluno_cursoModel)
+    declare alunos: AlunoModel[];
+
     @Column({
       primaryKey: true,
       type: DataType.TEXT,
@@ -34,5 +41,4 @@ import {
     @DeletedAt
     declare deleted_at: Date;
   }
-  
   export default CursoModel;

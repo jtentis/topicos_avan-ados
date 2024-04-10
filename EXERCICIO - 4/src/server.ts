@@ -1,6 +1,6 @@
 import express from "express";
 import "./database/connection"
-import routes from "./routes/routes";
+import routes from "./controllers/routes";
 
 const app = express();
 app.use(express.json());

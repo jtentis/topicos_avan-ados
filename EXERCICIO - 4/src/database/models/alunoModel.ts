@@ -5,9 +5,12 @@ import {
     DataType,
     CreatedAt,
     UpdatedAt,
-    DeletedAt,
+    DeletedAt, BelongsToMany,
 } from "sequelize-typescript";
-import {Identifier} from "sequelize";
+import {BelongsTo, Identifier} from "sequelize";
+import CursoModel from "./cursoModel";
+import Aluno_cursoModel from "./aluno_cursoModel";
+import cursoModel from "./cursoModel";
   
   @Table({
     timestamps: true,
@@ -16,6 +19,10 @@ import {Identifier} from "sequelize";
   })
 
   class AlunoModel extends Model{
+
+    @BelongsToMany(() => CursoModel, () => Aluno_cursoModel)
+    declare cursos: CursoModel[];
+
     @Column({
       primaryKey: true,
       type: DataType.TEXT,

@@ -1,7 +1,10 @@
 import CursoModel from "../database/models/cursoModel";
 import {cursoInterface} from "../interfaces/cursoInterface";
 import {v4 as uuidv4} from "uuid";
-import {Identifier} from "sequelize";
+import {Identifier, STRING, TEXT} from "sequelize";
+import AlunoModel from "../database/models/alunoModel";
+import aluno_cursoModel from "../database/models/aluno_cursoModel";
+import sequelize from "../database/connection";
 
 export default class cursoRepository {
 
@@ -10,6 +13,10 @@ export default class cursoRepository {
     }
 
     async insert({nome}: cursoInterface){
+        aluno_cursoModel.init({
+            id_curso: TEXT
+        }, {sequelize});
+        CursoModel.belongsToMany(AlunoModel, {through: 'aluno_curso'})
         await CursoModel.create({
             id: uuidv4(),
             nome: nome,

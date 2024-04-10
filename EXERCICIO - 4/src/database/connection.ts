@@ -8,6 +8,10 @@ const sequelize = new Sequelize({
   host: 'db',
   port: 5432,
   models: [__dirname + "/models"],
+  timezone: '-03:00',
+  dialectOptions: {
+    useUTC: false
+  }
 });
 
 (async () => {

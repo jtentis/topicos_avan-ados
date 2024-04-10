@@ -5,10 +5,10 @@ import {Identifier} from "sequelize";
 
 export default class AlunoRepository {
 
-    async findId(id:Identifier){
-        await AlunoModel.findByPk(id);
+    async find(id: Identifier) {
+        return await AlunoModel.findByPk(id);
     }
-    async insert({nome, matricula, curso}: alunoInterface){
+    async insert({nome, matricula, curso}: alunoInterface) {
         await AlunoModel.create({
             id: uuidv4(),
             nome: nome,
@@ -23,23 +23,30 @@ export default class AlunoRepository {
         });
     }
 
-    async selectNomes() {
-        return AlunoModel.findAll({
-            attributes:[
-                'nome'
-            ]
+    async selectOne(id: Identifier) {
+        return AlunoModel.findOne({
+            attributes: {
+                exclude: [
+                    'deleted_at',
+                    'created_at',
+                    'updated_at'
+                ]
+            },
+            where: {
+                id: id
+            }
         });
     }
 
-    async update(id:String, {nome, curso}: alunoInterface) {
-        await AlunoModel.update({nome, curso},{
+    async update(id: String, {nome, curso}: alunoInterface) {
+        return AlunoModel.update({nome, curso}, {
             where: {
                 id: id,
             },
         });
     }
 
-    async destroy(id:String) {
+    async destroy(id: String) {
         await AlunoModel.destroy({
             where: {
                 id: id,

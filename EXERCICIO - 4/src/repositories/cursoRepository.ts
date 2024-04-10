@@ -1,8 +1,13 @@
 import CursoModel from "../database/models/cursoModel";
 import {cursoInterface} from "../interfaces/cursoInterface";
 import {v4 as uuidv4} from "uuid";
+import {Identifier} from "sequelize";
 
 export default class cursoRepository {
+
+    async find(id: Identifier) {
+        return await CursoModel.findByPk(id);
+    }
 
     async insert({nome}: cursoInterface){
         await CursoModel.create({
@@ -17,11 +22,18 @@ export default class cursoRepository {
         });
     }
 
-    async selectNomes() {
-        return CursoModel.findAll({
-            attributes:[
-                'nome'
-            ]
+    async selectOne(id: Identifier) {
+        return CursoModel.findOne({
+            attributes: {
+                exclude: [
+                    'deleted_at',
+                    'created_at',
+                    'updated_at'
+                ]
+            },
+            where: {
+                id: id
+            }
         });
     }
 

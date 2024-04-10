@@ -1,6 +1,5 @@
 import {Request, Response, NextFunction} from "express";
 import CursoRepository from "../../repositories/cursoRepository";
-import cursoModel from "../../database/models/cursoModel";
 
 export const criarCurso = async (
     req: Request,
@@ -30,9 +29,20 @@ export const listarCursosSemCurso = async (
     next: NextFunction
 ) => {
     const repository = new CursoRepository();
-    let cursos = await repository.selectNomes();
+    const id = String(req.params.id)
+    let curso = await repository.selectOne(id);
+    const find = await repository.find(id);
 
-    res.status(200).json({message:"Lista dos nomes dos cursos:", cursos});
+    try{
+        if(find){
+            await repository.selectOne(id);
+            res.status(200).json({message:`Curso do id ${id}:`, curso});
+        }else{
+            res.status(404).json({message:"Id inválido!"});
+        }
+    }catch (error: any){
+        res.status(400).json({error:error.message});
+    }
 };
 
 export const editarCurso = async (
@@ -43,14 +53,15 @@ export const editarCurso = async (
     const repository = new CursoRepository();
     const {nome} = req.body;
     const id = String(req.params.id);
-    const find = await cursoModel.findByPk(id);
+    const find = await repository.find(id);
 
     try{
         if(find){
             await repository.update(id,{
                 nome: nome,
             });
-            res.status(200).json({message:"Curso atualizado com sucesso!"});
+            const curso = await repository.selectOne(id)
+            res.status(200).json({message:"Curso atualizado com sucesso!", curso});
         }else{
             res.status(404).json({message:"Id inválido!"});
         }
@@ -66,7 +77,7 @@ export const deletarCurso = async (
 ) => {
     const repository = new CursoRepository();
     const id = String(req.params.id);
-    const find = await cursoModel.findByPk(id);
+    const find = await repository.find(id);
 
     try{
         if(find){

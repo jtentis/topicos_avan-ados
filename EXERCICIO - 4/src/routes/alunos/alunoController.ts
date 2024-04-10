@@ -25,15 +25,26 @@ export const listarAlunos = async (
     res.status(200).json({message:"Lista dos alunos:", alunos});
 };
 
-export const listarAlunosSemCurso = async (
+export const listarAluno = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     const repository = new AlunoRepository();
-    let alunos = await repository.selectNomes();
+    const id = String(req.params.id)
+    let aluno = await repository.selectOne(id);
+    const find = await repository.find(id);
 
-    res.status(200).json({message:"Lista dos nomes dos alunos:", alunos});
+    try{
+        if(find){
+            await repository.selectOne(id);
+            res.status(200).json({message:`Aluno do id ${id}:`, aluno});
+        }else{
+            res.status(404).json({message:"Id inválido!"});
+        }
+    }catch (error: any){
+        res.status(400).json({error:error.message});
+    }
 };
 
 export const editarAluno = async (
@@ -44,7 +55,7 @@ export const editarAluno = async (
     const repository = new AlunoRepository();
     const {nome, curso} = req.body;
     const id = String(req.params.id);
-    const find = await AlunoModel.findByPk(id);
+    const find = await repository.find(id);
 
     try{
         if(find){
@@ -52,9 +63,10 @@ export const editarAluno = async (
                 nome: nome,
                 curso: curso
             });
-            res.status(200).json({message:"Aluno atualizado com sucesso!"});
+            const aluno = await repository.selectOne(id);
+            res.status(200).json({message: "Aluno editado com sucesso!", aluno});
         }else{
-            res.status(404).json({message:"Id inválido!"});
+            res.status(404).json({id:`${id}`, message:"Id inválido!"});
         }
     }catch (error: any){
         res.status(400).json({error:error.message});
@@ -68,14 +80,15 @@ export const deletarAluno = async (
 ) => {
     const repository = new AlunoRepository();
     const id = String(req.params.id);
-    const find = await alunoModel.findByPk(id);
+    const find = await repository.find(id);
 
     try{
         if(find){
             await repository.destroy(id);
-            res.status(200).json({message:"Aluno deletado com sucesso!"});
+            const aluno = await repository.selectOne(id);
+            res.status(200).json({message: "Aluno deletado com sucesso!", aluno});
         }else{
-            res.status(404).json({message:"Id inválido!"});
+            res.status(404).send({message:`Id: ${id} inválido!`});
         }
     }catch (error: any){
         res.status(400).json({error:error.message});

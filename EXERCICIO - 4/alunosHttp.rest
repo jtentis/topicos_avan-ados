@@ -2,7 +2,7 @@
 GET http://localhost:4000/listarAlunos
 
 ### Listar Nomes
-GET http://localhost:4000/listarNomesAlunos
+GET http://localhost:4000/listarAluno/c21494b7-9989-4752-a655-d6b1f6b2d24f
 
 
 ### Criar
@@ -15,8 +15,17 @@ Content-Type: application/json
   "curso": ["ti","arroz"]
 }
 
-### Atualizar
-PUT http://localhost:4000/editarAluno/f451fa1c-3076-416c-9821-1db30a9fc59b
+### Atualizar Patch
+PATCH http://localhost:4000/editarAluno/ead23ad7-7357-4d02-898b-6e3abc67ee93
+Content-Type: application/json
+
+{
+  "nome": "aaaaaaaa",
+  "curso": "biologia avançada"
+}
+
+### Atualizar Put
+PUT http://localhost:4000/editarAluno/ead23ad7-7357-4d02-898b-6e3abc67ee93
 Content-Type: application/json
 
 {
@@ -25,4 +34,4 @@ Content-Type: application/json
 }
 
 ### Deletar
-DELETE http://localhost:4000/deletarAluno/d87311aa-fa14-450a-bc38-75140a356de7
+DELETE http://localhost:4000/deletarAluno/c21494b7-9989-4752-a655-d6b1f6b2d24f

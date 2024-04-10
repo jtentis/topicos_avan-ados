@@ -4,8 +4,10 @@ import {
     Model,
     DataType,
     CreatedAt,
-    UpdatedAt, DeletedAt,
+    UpdatedAt,
+    DeletedAt,
 } from "sequelize-typescript";
+import {Identifier} from "sequelize";
   
   @Table({
     timestamps: true,
@@ -18,7 +20,7 @@ import {
       primaryKey: true,
       type: DataType.TEXT,
     })
-    declare id: string;
+    declare id: Identifier;
   
     @Column({
       type: DataType.TEXT,

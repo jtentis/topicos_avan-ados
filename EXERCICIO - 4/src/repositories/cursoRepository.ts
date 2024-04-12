@@ -1,13 +1,8 @@
 import CursoModel from "../database/models/cursoModel";
 import {cursoInterface} from "../interfaces/cursoInterface";
 import {v4 as uuidv4} from "uuid";
-import {Identifier, STRING, TEXT} from "sequelize";
-import AlunoModel from "../database/models/alunoModel";
-import aluno_cursoModel from "../database/models/aluno_cursoModel";
-import sequelize from "../database/connection";
-import cursoModel from "../database/models/cursoModel";
+import {Identifier} from "sequelize";
 import alunoModel from "../database/models/alunoModel";
-import Aluno_cursoModel from "../database/models/aluno_cursoModel";
 
 export default class cursoRepository {
 
@@ -16,10 +11,9 @@ export default class cursoRepository {
     }
 
     async insert({nome}: cursoInterface){
-        // CursoModel.belongsToMany(AlunoModel, {
-        //     as: 'alunos',
+        // let teste = CursoModel.belongsToMany(AlunoModel, {
         //     through: 'aluno_curso',
-        //     foreignKey: 'id',
+        //     foreignKey: 'id_aluno',
         // })
         await CursoModel.bulkCreate([{
             id: uuidv4(),
@@ -29,6 +23,7 @@ export default class cursoRepository {
             include:[{
                 model: alunoModel,
                 as: 'alunos',
+                // foreignKey: 'id_alunos'
             }]
         });
     }

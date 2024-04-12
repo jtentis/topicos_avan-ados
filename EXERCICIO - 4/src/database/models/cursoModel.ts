@@ -4,11 +4,10 @@ import {
   Model,
   DataType,
   CreatedAt,
-  UpdatedAt, DeletedAt, BelongsToMany, HasMany,
+  UpdatedAt, DeletedAt, BelongsToMany, HasMany, ForeignKey,
 } from "sequelize-typescript";
 import Aluno_cursoModel from "./aluno_cursoModel";
 import AlunoModel from "./alunoModel";
-import alunoModel from "./alunoModel";
   
   @Table({
     timestamps: true,
@@ -26,6 +25,12 @@ import alunoModel from "./alunoModel";
       type: DataType.TEXT,
     })
     declare id: string;
+
+    // @ForeignKey(() => AlunoModel)
+    // @Column({
+    //   type: DataType.TEXT,
+    // })
+    // declare id_fk: Identifier;
   
     @Column({
       type: DataType.JSON,

@@ -7,10 +7,9 @@ import {
     UpdatedAt,
     DeletedAt, BelongsToMany, HasMany,
 } from "sequelize-typescript";
-import {BelongsTo, Identifier} from "sequelize";
+import {Identifier} from "sequelize";
 import CursoModel from "./cursoModel";
 import Aluno_cursoModel from "./aluno_cursoModel";
-import cursoModel from "./cursoModel";
   
   @Table({
     timestamps: true,
@@ -22,6 +21,9 @@ import cursoModel from "./cursoModel";
 
     @BelongsToMany(() => CursoModel, () => Aluno_cursoModel)
     declare cursos: CursoModel[];
+
+    // @HasMany(() => CursoModel)
+    // declare aluno_cursos: cursoModel[];
 
     @Column({
       primaryKey: true,

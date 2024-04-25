@@ -1,10 +1,10 @@
 const express = require("express");
-const db = require('../db');
-const { ulid } = require("ulid");
+const {adicionarAluno, atualizarAluno, excluirAluno, getAlunos} = require('./alunosModel');
+const {ulid} = require("ulid");
 
 const app = express.Router();
 
-app.post("/", (request, response) => {
+app.post("/CriarAluno", (request, response) => {
     const novoAluno = {
         "id": ulid(),
         "nome": request.body.nome,
@@ -12,22 +12,22 @@ app.post("/", (request, response) => {
         "cursos": request.body.cursos,
     };
 
-    db.adicionarAluno(novoAluno);
+    adicionarAluno(novoAluno);
     return response.json(novoAluno);
 });
 
 // listar todos
-app.get("/", (request, response) => {
-    const alunos = db.getAlunos();
+app.get("/ListarAlunos", (request, response) => {
+    const alunos = getAlunos();
     return response.json(alunos);
 });
 
 // listar especifico
-app.get("/:id", (request, response) => {
+app.get("/ListarAluno/:id", (request, response) => {
     const id = request.params.id;
     // console.log("\nid:", id);
 
-    const alunos = db.getAlunos();
+    const alunos = getAlunos();
     const acharAluno = alunos.find((valor) => valor.id == id);
 
     console.log(acharAluno);
@@ -39,7 +39,7 @@ app.get("/:id", (request, response) => {
     }
 })
 
-app.patch("/:id", (request, response) => {
+app.patch("/EditarAluno/:id", (request, response) => {
     const id = request.params.id;
     const alunoAtualizado = {
         "nome": request.body.nome,
@@ -47,7 +47,7 @@ app.patch("/:id", (request, response) => {
         "cursos": request.body.cursos,
     };
     console.log(id)
-    const aluno = db.atualizarAluno(id, alunoAtualizado);
+    const aluno = atualizarAluno(id, alunoAtualizado);
     console.log(aluno)
     if (aluno) {
         return response.status(200).json({"message":"aluno atualizado com sucesso", "status":"200", data:{aluno}});
@@ -56,9 +56,9 @@ app.patch("/:id", (request, response) => {
     }
 });
 
-app.delete("/:id", (request, response) => {
+app.delete("/DeletarAluno/:id", (request, response) => {
     const id = request.params.id;
-    const alunoExcluido = db.excluirAluno(id);
+    const alunoExcluido = excluirAluno(id);
 
     if (alunoExcluido) {
         return response.status(200).json({"message":"aluno deletado com sucesso", "status":"200", data:{alunoExcluido}});

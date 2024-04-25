@@ -1,0 +1,25 @@
+### POSTasdasd
+POST http://localhost:3000/CriarAluno
+Content-Type: application/json
+
+{
+  "nome": "joao",
+  "matricula": "777",
+  "cursos": ["ti","arroz"]
+}
+
+### GET
+GET http://localhost:3000/ListarAlunos
+
+### GET
+GET http://localhost:3000/ListarAluno/01HWAQQAMEFSJ2V2HJENJSRMC9
+
+### PATCH
+PATCH http://localhost:3000/EditarAluno/01HWAQZHM8KP0Z2Y3QMJNHEYW6
+Content-Type: application/json
+
+{
+  "nome": "sdasd",
+  "matricula": "2654654",
+  "cursos": ["taasdasdai","aaa"]
+}
